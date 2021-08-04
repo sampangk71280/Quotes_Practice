@@ -4,12 +4,13 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Put Content Here">
-    <meta name="keywords" content="Put keywords here">
-    <meta name="author" content="Put your name here">
+    <meta name="description" content="Site featuring short quotes by both famous and no so famous people">
+    <meta name="keywords" content="quotes, famous, author, writer, sportsman,
+    political activist, sayings">
+    <meta name="author" content="Kristelle Sampang">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>DB Name</title>
+    <title>Quick Quotes</title>
     
     <!-- Edit the link below / replace with your chosen google font -->
     <link href="https://fonts.googleapis.com/css?family=Lato%7cUbuntu" rel="stylesheet"> 
@@ -29,7 +30,7 @@
         <div class="box banner">
             
     
-            <h1>DB Name</h1>
+            <h1>Quick Quotes</h1>
         </div>    <!-- / banner -->
 
         <!-- Navigation goes here.  Edit BOTH the file name and the link name -->
