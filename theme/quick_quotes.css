@@ -142,7 +142,7 @@ a.topnav:hover {color: #707a00; text-decoration: none;}
 /* links in page */
 a {font-weight: bold;}
 a:link{color: #ffffff;} /* white */
-a:visited{color: #009e31;} /* dark green */
+a:visited{color: #4c9c72;} /* dark green */
 a:hover{color: #a7d6b5;}    /* light  Green*/
 
 /* #### Headings / text styling #### */
