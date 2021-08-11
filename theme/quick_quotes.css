@@ -122,7 +122,7 @@ body {
 /* Area colouring... */
 
 /* logo, banner and footer background are the same */
-.logo, .banner, .footer {
+.banner, .footer {
     background-color: #4c9c72;  /* dark green */
 }
 
@@ -207,3 +207,12 @@ input {
     display: inline-block;
 }
 
+/* ### Results styling, includes 'tags' button ### */
+.results{
+    background-color: #f7f7f7;
+    border: solid 1px #4c9c72;
+    padding: 10px;
+
+    margin-right: 20px;
+    border-radius: 20px;
+}

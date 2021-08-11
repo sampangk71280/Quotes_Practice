@@ -13,9 +13,21 @@ do {
 
     $quote = preg_replace('/[^A-Za-z0-9.,?\s\'\-]/', ' ', $find_rs['Quote']);
 
+    // author name... 
+    $first = $find_rs['First'];
+    $middle = $find_rs['Middle'];
+    $last = $find_rs['Last'];
+
+    $full_name = $first." ".$middle." ".$last;
+
+
     ?>
 <div class="results">
-    <?php echo $quote; ?>
+    <?php echo $quote; ?><br />
+    <a href="index.php?page=author&authorID=<?php echo $find_rs['Author_ID'];
+    ?>">
+        <?php echo $full_name; ?>
+    </a>
 
 </div>
 
