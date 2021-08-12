@@ -225,3 +225,11 @@ input {
     border: solid 1px #000;
     border-radius: 5px;
 }
+
+.about{
+    background: #65de9f; /* light green */
+    border: solid 1px #4c9c72; /* green*/
+    padding: 10px;
+    border-radius: 10px;
+    margin-right: 20px;
+}
