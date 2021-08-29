@@ -13,7 +13,7 @@ $login_query = mysqli_query($dbconnect, $login_sql);
 $login_rs = mysqli_fetch_assoc($login_query);
 
 // Hash password and compare with password in database 
-if(password_verify($REQUEST['password'],$login_rs['password'])) {
+if(password_verify($_REQUEST['password'],$login_rs['password'])) {
 
     // password matches
     echo 'Password is valid';
