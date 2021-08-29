@@ -39,7 +39,7 @@
                     ?> 
                     
                     Add Quote &nbsp; &nbsp;
-                    Log Out
+                    <a href="index.php?page=.../admin/logout">Log Out </a>
 
                     <?php
                     } // end user if logged in if   
