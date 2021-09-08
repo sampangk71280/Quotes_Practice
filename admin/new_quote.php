@@ -1,5 +1,3 @@
-New quote form will go here
-
 <?php
 // cehck user is logged in 
 if (isset($_SESSION['admin'])) {
@@ -13,6 +11,16 @@ if (isset($_SESSION['admin'])) {
     $first = "";
     $middle = "";
     $last = "";
+    
+    // Code below executes when the form is submitted
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+
+// Get values from form... 
+$author_ID = mysqli_real_escape_string($dbconnect, $_POST['author']);
+$_SESSION['Add_Quote']=$author_ID;
+header('Location: index.php?page=../admin/add_entry');
+
+} // end submit button pushed if 
 
 } // end user logged in if
 
@@ -39,7 +47,7 @@ action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]."?page=../admin/new_quo
     <div>
         <b>Quote Author:</b> &nbsp;
 
-        <select>
+        <select name="author">
             <!-- Default option is new author -->
             <option value="unknown" selected>New Author</option>
 
