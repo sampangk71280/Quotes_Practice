@@ -242,3 +242,11 @@ input {
     border: solid 1px #721a1a;
 
 }
+
+/* Form Formatting css */
+
+/* make height of drop downs slightly larger */
+select {
+    height: 40px;
+    padding: 5px;
+}
