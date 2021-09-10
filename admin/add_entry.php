@@ -33,7 +33,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // get data from form
     $quote = mysqli_real_escape_string($dbconnect, $_POST['quote']);
-
+    $notes = mysqli_real_escape_string($dbconnect, $_POST['notes']);
+    
     // check data is valid
 
     // check quote is not blank
@@ -71,9 +72,35 @@ enctype="multipart/form-data">
     row="6"><?php echo $quote; ?></textarea>
     <br/><br/>
 
+        <input class="add-field <?php echo $notes; ?>" type="text"
+        name="notes" value="<?php echo $notes; ?>" placeholder="Notes (optional).."/>
+
+    <br/><br/>
+
+    <!-- Subject 1 -->    
+    <div class="<?php echo $tag_1_error ?>">
+        Please enter at least one subejct tag
+    </div>
+    
+    <div class="autocomplete"> 
+        <input class="<?php echo $tag_1_field; ?>" id="subject1"
+        type="text" name="Subject_1" placeholder="Subject 1(Start Typing)...">
+    </div>
+    
+
     <!-- Submit Button -->
     <p>
         <input type="submit" value="Submit" />
     </p>
 
 </form>
+
+<!-- script to make autocomplete work -->
+<script>
+<?php include("autocomplete.php"); ?>
+
+/* Array containing lists */
+var all_tags = <?php print("$all_subjects"); ?>;
+autcomplete(document.getElementByID("subject1"), all_tags);
+
+</script>
