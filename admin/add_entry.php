@@ -67,12 +67,12 @@ if($has_errors != "yes") {
     $addentry_query = mysqli_query($dbconnect, $addentry_sql);
 
     // get Quote ID for next page
-    $get_quote_sql = "SELECT * FROM `quotes` WHERE `Quote` = '$quote'  ";
+    $get_quote_sql = "SELECT * FROM `quotes` WHERE `Quote` = '$quote' ";
     $get_quote_query = mysqli_query($dbconnect, $get_quote_sql);
     $get_quote_rs = mysqli_fetch_assoc($get_quote_query);
 
-    $quote_ID = $get_quoters['ID']; 
-    $_SESSION['Quote_Success']=$quote_ID;
+   $quote_ID = $get_quote_rs['ID'];
+   $_SESSION['Quote_Success']=$quote_ID;
 
     // Go to success page... 
     header('Location: index.php?page=quote_success');
