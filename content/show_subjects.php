@@ -33,6 +33,25 @@
                 unset($subject);
 
                 } // end subject loop
+            
+            // if logged in, show edit / delete options... 
+            if(isset($_SESSION['admin'])) {
+                
+                ?>
+
+            <div class="edit-tools">
+            <a href="index.php?page=../admin/editquote&ID=<?php echo 
+            $find_rs['ID'];?>" title="Edit Quote">
+            <i class="fa fa-edit fa-2x"></i></a>
+
+            &nbsp; &nbsp; 
+            <a href="index.php?page=../admin/deletequote_confirm&ID=<?php echo
+            $find_rs['ID']; ?>" title="Delete Quote">
+            <i class="fa fa-trash fa-2x"></i></a>
+
+            </div> <!-- / edit tools div --> 
+                <?php
+            }
 
         ?>
 
