@@ -32,9 +32,9 @@ if (isset($_SESSION['admin'])) {
     $notes = $find_rs['Notes'];
     
     // Get subjects to populate tags... 
-    $subjectID_1 = $find_rs['Subject1_ID'];
-    $subjectID_2 = $find_rs['Subject2_ID'];
-    $subjectID_3 = $find_rs['Subject3_ID'];
+    $subject1_ID = $find_rs['Subject1_ID'];
+    $subject2_ID = $find_rs['Subject2_ID'];
+    $subject3_ID = $find_rs['Subject3_ID'];
 
     // Retrieve subject names from subject table... 
     $tag_1_rs = get_rs($dbconnect, "SELECT * FROM `subject` WHERE Subject_ID = $subject1_ID");
