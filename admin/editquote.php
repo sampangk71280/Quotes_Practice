@@ -60,6 +60,7 @@ $tag_1_field = "tag-ok";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // get data from form
+    $author_ID = mysqli_real_escape_string($dbconnect, $_POST['author']);
     $quote = mysqli_real_escape_string($dbconnect, $_POST['quote']);
     $notes = mysqli_real_escape_string($dbconnect, $_POST['notes']);
     $tag_1 = mysqli_real_escape_string($dbconnect, $_POST['Subject_1']);
@@ -89,10 +90,12 @@ if($has_errors != "yes") {
     $subjectID_2 = get_ID($dbconnect, 'subject', 'Subject_ID', 'Subject', $tag_2);
     $subjectID_3 = get_ID($dbconnect, 'subject', 'Subject_ID', 'Subject', $tag_3);
 
-    // add entry to the database
-    $addentry_sql = "INSERT INTO `quotes` (`ID`, `Author_ID`, `Quote`, `Notes`, `Subject1_ID`, 
-    `Subject2_ID`, `Subject3_ID`) VALUES (NULL, '$author_ID', '$quote', '$notes', '$subjectID_1', '$subjectID_2', '$subjectID_3');";
-    $addentry_query = mysqli_query($dbconnect, $addentry_sql);
+    // edit database entry
+    $editentry_sql= "UPDATE `quotes` SET `ID` = '$author_ID', `Quote` = '$quote', 
+    `Notes` = '$notes', `Subject1_ID` = '$subjectID_1', `Subject2_ID` = '$subjectID_2', 
+    `Subject3_ID` = '$subjectID_3' WHERE `quotes`.`ID` = $ID";
+    $editentry_query = mysqli_query($dbconnect, $editentry_sql);
+
 
     // get Quote ID for next page
     $get_quote_sql = "SELECT * FROM `quotes` WHERE `Quote` = '$quote' ";
@@ -103,10 +106,9 @@ if($has_errors != "yes") {
    $_SESSION['Quote_Success']=$quote_ID;
 
     // Go to success page... 
-    header('Location: index.php?page=quote_success');
+    header('Location: index.php?page=editquote_success&quote_ID='.$quote_ID);
 
-} // end add entry to database if
-
+    } // end add entry to database if
 
 } // end submit button if 
 
@@ -126,7 +128,7 @@ else {
 <form autocomplete="off" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]."?page=../admin/editquote&ID=$ID");?>"
 enctype="multipart/form-data">
 
-    <b>Quote Author:</b> &nbsp;
+    <b>Quote Author:</b> &nbsp; &nbsp;
 
     <select name="author">
         <!-- Default option is new author -->
@@ -137,7 +139,20 @@ enctype="multipart/form-data">
 
         <?php
         
+    // get authors from database
+    $all_authors_sql = "SELECT * FROM `author` ORDER BY `Last` ASC";
+    $all_authors_query = mysqli_query($dbconnect, $all_authors_sql);
+    $all_authors_rs = mysqli_fetch_assoc($all_authors_query); 
+
         do {
+
+        $author_ID = $all_authors_rs['Author_ID'];
+        $first = $all_authors_rs['First'];
+        $middle = $all_authors_rs['Middle'];
+        $last = $all_authors_rs['Last'];
+        
+        $author_full = $last.", ".$first." ".$middle;
+
 
         ?>
 
@@ -159,12 +174,12 @@ enctype="multipart/form-data">
         This field can't be blank   
     </div>
     
-    <textarea class="add-field <?php echo $quote_field?>" name="quote"
+    <textarea class="add-field<?php echo $quote_field?>" name="quote"
     row="6"><?php echo $quote; ?></textarea>
     <br/><br/>
 
-        <input class="add-field <?php echo $notes; ?>" type="text"
-        name="notes" value="<?php echo $notes; ?>" placeholder="Notes (optional).."/>
+    <input class="add-field<?php echo $notes; ?>" type="text"
+    name="notes" value="<?php echo $notes; ?>" placeholder="Notes (optional).."/>
 
     <br/><br/>
 
