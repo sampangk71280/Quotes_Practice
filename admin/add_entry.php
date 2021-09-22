@@ -1,5 +1,3 @@
-New quote form will go here
-
 <?php
 // cehck user is logged in 
 if (isset($_SESSION['admin'])) {

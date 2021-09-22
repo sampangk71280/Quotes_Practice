@@ -1,3 +1,3 @@
 <div class="box footer">
-            CC KristelleSampang 20XX
+            CC Kristelle Sampang 2021
         </div>    <!-- / footer -->
