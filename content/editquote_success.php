@@ -10,7 +10,7 @@ $find_sql = "SELECT * FROM `quotes`
 JOIN author ON(`author`.`Author_ID` = `quotes`.`Author_ID`) WHERE `ID` = 
 $quote_ID";
 $find_query = mysqli_query($dbconnect, $find_sql);
-$find_rs = mysqli_fetch_assoc($find_query);
+$find_rs=mysqli_fetch_assoc($find_query);
 
 // loop through results and display them... 
 do {

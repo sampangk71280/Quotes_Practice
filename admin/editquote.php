@@ -35,16 +35,28 @@ if (isset($_SESSION['admin'])) {
     $subject1_ID = $find_rs['Subject1_ID'];
     $subject2_ID = $find_rs['Subject2_ID'];
     $subject3_ID = $find_rs['Subject3_ID'];
+	
+	// Set subject tags to blank at start...
+	$tag_1 = $tag_2 = $tag_3 = "";
 
     // Retrieve subject names from subject table... 
     $tag_1_rs = get_rs($dbconnect, "SELECT * FROM `subject` WHERE Subject_ID = $subject1_ID");
     $tag_1 = $tag_1_rs['Subject'];
-
+	
+	// added by GK, checks we have a subject...
+	
+	if ($subject2_ID > 0)
+	{
     $tag_2_rs = get_rs($dbconnect, "SELECT * FROM `subject` WHERE Subject_ID = $subject2_ID");
     $tag_2 = $tag_2_rs['Subject'];
+	};
 
+
+	if ($subject3_ID > 0)
+	{
     $tag_3_rs = get_rs($dbconnect, "SELECT * FROM `subject` WHERE Subject_ID = $subject3_ID");
     $tag_3 = $tag_3_rs['Subject'];
+	};
 
 // initialise tag ID's
 $tag_1_ID = $tag_2_ID = $tag_3_ID = 0; 
@@ -91,7 +103,7 @@ if($has_errors != "yes") {
     $subjectID_3 = get_ID($dbconnect, 'subject', 'Subject_ID', 'Subject', $tag_3);
 
     // edit database entry
-    $editentry_sql= "UPDATE `quotes` SET `ID` = '$author_ID', `Quote` = '$quote', 
+    $editentry_sql= "UPDATE `quotes` SET `Author_ID` = '$author_ID', `Quote` = '$quote', 
     `Notes` = '$notes', `Subject1_ID` = '$subjectID_1', `Subject2_ID` = '$subjectID_2', 
     `Subject3_ID` = '$subjectID_3' WHERE `quotes`.`ID` = $ID";
     $editentry_query = mysqli_query($dbconnect, $editentry_sql);
@@ -109,6 +121,7 @@ if($has_errors != "yes") {
     header('Location: index.php?page=editquote_success&quote_ID='.$quote_ID);
 
     } // end add entry to database if
+
 
 } // end submit button if 
 
@@ -189,7 +202,7 @@ enctype="multipart/form-data">
     </div>
     
    <div class="autocomplete"> 
-       <input class="<?php echo $tag_1_field; ?>" id="subject1"
+       <input class="<?php echo $tag_1_field; ?>" id="subject1" value="<?php echo $tag_1; ?>"
        type="text" name="Subject_1" placeholder="Subject 1 (start typing)...">
     </div>
 
@@ -197,7 +210,7 @@ enctype="multipart/form-data">
 
     <!-- Subject 2 -->
     <div class="autocomplete">
-        <input id="subject2" type="text" name="Subject_2"
+        <input id="subject2" type="text" name="Subject_2" value="<?php echo $tag_2; ?>"
         placeholder="Subject 2 (start typing, optional)...">
     </div>
 
@@ -205,7 +218,7 @@ enctype="multipart/form-data">
 
     <!-- Subject 3--> 
     <div class="autocomplete">
-        <input id="subject3" type="text" name="Subject_3"
+        <input id="subject3" type="text" name="Subject_3" value="<?php echo $tag_3; ?>"
         placeholder="Subject 3 (start typing, optional)...">
     </div>
 
